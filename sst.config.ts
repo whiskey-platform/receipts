@@ -35,6 +35,13 @@ export default $config({
             cert: process.env.CERT_ARN,
           }
         : undefined,
+      transform: {
+        domainName(args, opts, name) {
+          if ($app.stage === "prod") {
+            args.domainName = "api.whiskey.mattwyskiel.com";
+          }
+        },
+      },
     });
     api.route("GET /", "functions/api/list-receipts.handler");
     api.route("GET /{id}/file", {
