@@ -24,6 +24,8 @@ jobs:
           # Defaults to the user or organization that owns the workflow file
           scope: "@whiskey-platform"
       - run: pnpm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
