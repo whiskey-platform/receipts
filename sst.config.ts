@@ -30,18 +30,14 @@ export default $config({
             name: `api${
               $app.stage !== "prod" ? `.${$app.stage}` : ""
             }.whiskey.mattwyskiel.com`,
-            dns: false,
+            dns: sst.aws.dns({
+              zone: process.env.HOSTED_ZONE_ID,
+              override: true,
+            }),
             path: "receipts",
             cert: process.env.CERT_ARN,
           }
         : undefined,
-      transform: {
-        domainName(args, opts, name) {
-          if ($app.stage === "prod") {
-            args.domainName = "api.whiskey.mattwyskiel.com";
-          }
-        },
-      },
     });
     api.route("GET /", "functions/api/list-receipts.handler");
     api.route("GET /{id}/file", {
