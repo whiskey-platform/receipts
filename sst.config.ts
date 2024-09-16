@@ -24,30 +24,7 @@ export default $config({
       },
     });
 
-    const api = new sst.aws.ApiGatewayV2("API", {
-      domain: !$dev
-        ? {
-            name: `api${
-              $app.stage !== "prod" ? `.${$app.stage}` : ""
-            }.whiskey.mattwyskiel.com`,
-            dns: sst.aws.dns({
-              zone: process.env.HOSTED_ZONE_ID,
-              override: true,
-            }),
-            path: "receipts",
-            cert: process.env.CERT_ARN,
-          }
-        : undefined,
-      transform: {
-        domainName:
-          $app.stage === "prod"
-            ? aws.apigatewayv2.DomainName.get(
-                "domain",
-                "api.whiskey.mattwyskiel.com"
-              )
-            : undefined,
-      },
-    });
+    const api = new sst.aws.ApiGatewayV2("API");
     api.route("GET /", "functions/api/list-receipts.handler");
     api.route("GET /{id}/file", {
       handler: "functions/api/get-receipt-file.handler",
