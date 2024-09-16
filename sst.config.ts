@@ -38,6 +38,15 @@ export default $config({
             cert: process.env.CERT_ARN,
           }
         : undefined,
+      transform: {
+        domainName:
+          $app.stage === "prod"
+            ? aws.apigatewayv2.DomainName.get(
+                "domain",
+                "api.whiskey.mattwyskiel.com"
+              )
+            : undefined,
+      },
     });
     api.route("GET /", "functions/api/list-receipts.handler");
     api.route("GET /{id}/file", {
