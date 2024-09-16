@@ -1,0 +1,39 @@
+{
+  "name": "receipts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "sst dev",
+    "deploy": "sst deploy --stage=prod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-crypto/sha256-js": "^5.2.0",
+    "@aws-lambda-powertools/logger": "^2.7.0",
+    "@aws-sdk/client-s3": "^3.651.1",
+    "@aws-sdk/client-sts": "^3.651.1",
+    "@aws-sdk/credential-providers": "^3.651.1",
+    "@aws-sdk/s3-request-presigner": "^3.651.1",
+    "@aws-sdk/util-create-request": "^3.649.0",
+    "@smithy/signature-v4": "^4.1.3",
+    "@whiskey-platform/auth": "^1.1.0",
+    "@whiskey-platform/secrets": "^1.0.0",
+    "axios": "^1.7.7",
+    "drizzle-orm": "^0.33.0",
+    "luxon": "^3.5.0",
+    "mime-types": "^2.1.35",
+    "postgres": "^3.4.4",
+    "sst": "3.0.97",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.145",
+    "@types/luxon": "^3.4.2",
+    "@types/mime-types": "^2.1.4",
+    "typescript": "^5.6.2"
+  }
+}
