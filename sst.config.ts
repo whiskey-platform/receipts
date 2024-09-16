@@ -30,16 +30,9 @@ export default $config({
             name: `api${
               $app.stage !== "prod" ? `.${$app.stage}` : ""
             }.whiskey.mattwyskiel.com`,
-            dns: sst.aws.dns({
-              zone: process.env.HOSTED_ZONE_ID,
-              transform: {
-                record: aws.route53.Record.get(
-                  "ApiDomainRecord",
-                  "Z1UJRXOUMOOFQ8_api.whiskey.mattwyskiel.com_CNAME"
-                ),
-              },
-            }),
+            dns: false,
             path: "receipts",
+            cert: process.env.CERT_ARN,
           }
         : undefined,
     });

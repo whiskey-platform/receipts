@@ -38,3 +38,4 @@ jobs:
         env:
           NO_BUN: true
           HOSTED_ZONE_ID: ${{ vars.ROUTE_53_HOSTED_ZONE_ID }}
+          CERT_ARN: ${{ secrets.API_CERTIFICATE_ARN_PROD }}
